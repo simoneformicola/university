@@ -2,6 +2,9 @@ package project.exam.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.service.spi.ServiceException;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import project.exam.model.Exam;
 import project.exam.repository.ExamRepository;
@@ -28,8 +31,10 @@ public class ExamServiceImpl implements ExamService {
 
 
     @Override
+    @Cacheable(value = "exams" , key = "'all'")
     public List<ExamDTO> findAll() throws ServiceException {
         try {
+            Thread.sleep(3000);
             List<Exam> examList = examRepository.findAll();
             List<ExamDTO> examDTOList = examList.stream().map(examMapper::toDTO).collect(Collectors.toList());
             return examDTOList;
@@ -40,9 +45,9 @@ public class ExamServiceImpl implements ExamService {
     }
 
     @Override
-    public ExamDTO findByCode(Integer code) throws ServiceException {
+    public ExamDTO findById(Integer id) throws ServiceException {
         try {
-            Optional<Exam> exam = examRepository.findById(code);
+            Optional<Exam> exam = examRepository.findById(id);
             if (exam.isPresent()) {
                 ExamDTO examDTO = examMapper.toDTO(exam.get());
                 return examDTO;
@@ -57,6 +62,9 @@ public class ExamServiceImpl implements ExamService {
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "exams" , key = "'all'"),
+    })
     public ExamDTO save(ExamDTO exam) {
         try{
             Exam toBeSaved = examMapper.toEntity(exam);
@@ -78,6 +86,5 @@ public class ExamServiceImpl implements ExamService {
             throw new ServiceException(e.getMessage());
         }
     }
-
 
 }

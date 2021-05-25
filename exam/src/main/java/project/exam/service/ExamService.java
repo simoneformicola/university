@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface ExamService {
 
+    ExamDTO findById(Integer id) throws ServiceException;
     List<ExamDTO> findAll() throws ServiceException;
-    ExamDTO findByCode(Integer code) throws ServiceException;
     ExamDTO save(ExamDTO examDTO) throws ServiceException;
     void deleteExam(Exam exam) throws ServiceException;
 }

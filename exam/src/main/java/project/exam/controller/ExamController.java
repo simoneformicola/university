@@ -26,7 +26,7 @@ public class ExamController {
 
     @GetMapping("/{id}")
     public ExamDTO getById(@PathVariable Integer id) throws ServiceException {
-        return this.examService.findByCode(id);
+        return this.examService.findById(id);
     }
 
     @PostMapping

@@ -15,4 +15,5 @@ public interface StudentService {
     StudentDTO save(StudentDTO student) throws ServiceException;
     void deleteById(Integer id) throws ServiceException;
     List<StudentDTO> findByFirstName(String name) throws ServiceException;
+    List<StudentDTO> findByLastName(String name) throws ServiceException;
 }

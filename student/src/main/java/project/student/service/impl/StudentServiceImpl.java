@@ -34,7 +34,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Cacheable(value = "students" , key = "'all'")
+    @Cacheable(value = "students" , key = "'all'" )
     public List<StudentDTO> findAll() throws ServiceException {
         try {
             Thread.sleep(3000);
@@ -61,8 +61,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Caching(evict = {
-            @CacheEvict(value = "students" , key = "'all'"),
-            @CacheEvict(value = "students", key = "#student.firstName")
+            @CacheEvict(value = "students" , key = "'all'" ),
+            @CacheEvict(value = "students", key = "#student.firstName"),
+            @CacheEvict(value = "students", key = "#student.lastName")
     })
     public StudentDTO save(StudentDTO student) throws ServiceException {
         try {
@@ -77,6 +78,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @CacheEvict(value = "students" , key = "'all'")
     public void deleteById(Integer id) throws ServiceException {
         try{
             studentRepository.deleteById(id);
@@ -87,11 +89,26 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Cacheable(value = "students" , key = "#name")
-    public List<StudentDTO> findByFirstName(String name) throws ServiceException {
+    @Cacheable(value = "students" , key = "#firstName")
+    public List<StudentDTO> findByFirstName(String firstName) throws ServiceException {
         try {
             Thread.sleep(3000);
-            List<Student> entityList = studentRepository.findByFirstName(name);
+            List<Student> entityList = studentRepository.findByFirstName(firstName);
+            List<StudentDTO> studentDTOS = entityList.stream().map(studentMapper::toDto).collect(Collectors.toList());
+            return studentDTOS;
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new ServiceException(e.getMessage());
+
+        }
+    }
+
+    @Override
+    @Cacheable(value = "students" , key = "#lastName")
+    public List<StudentDTO> findByLastName(String lastName) throws ServiceException {
+        try {
+            Thread.sleep(3000);
+            List<Student> entityList = studentRepository.findByLastName(lastName);
             List<StudentDTO> studentDTOS = entityList.stream().map(studentMapper::toDto).collect(Collectors.toList());
             return studentDTOS;
         }catch (Exception e){

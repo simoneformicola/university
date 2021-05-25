@@ -1,4 +1,4 @@
-package project.exam.service.dto;
+package com.project.examstudent.service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,9 +9,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExamDTO {
+public class ExamStudentDTO {
+
     private Integer id;
-    private Integer code;
-    private String name;
-    private Integer credit;
+    private Integer idStudente;
+    private Integer idEsame;
+    private Integer result; //min 18 max 30
 }

@@ -1,19 +1,17 @@
-package project.exam;
+package com.project.examstudent;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 
 @Slf4j
-@ComponentScan({ "project.exam" })
+@ComponentScan({ "com.project.examstudent" })
 @SpringBootApplication
-@EnableCaching
-public class ExamApplication {
+public class ExamstudentApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ExamApplication.class, args);
+		SpringApplication.run(ExamstudentApplication.class, args);
 	}
 
 }

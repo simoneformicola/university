@@ -38,9 +38,14 @@ public class StudentController {
         this.studentService.deleteById(id);
     }
 
-    @GetMapping("/firstname/{name}")
-    public List<StudentDTO> getByFirstName(@PathVariable String name) throws ServiceException{
-        return this.studentService.findByFirstName(name);
+    @GetMapping("/firstname/{firstName}")
+    public List<StudentDTO> getByFirstName(@PathVariable String firstName) throws ServiceException{
+        return this.studentService.findByFirstName(firstName);
+    }
+
+    @GetMapping("/lastname/{lastName}")
+    public List<StudentDTO> getByLastName(@PathVariable String lastName) throws ServiceException{
+        return this.studentService.findByLastName(lastName);
     }
 
 }
