@@ -1,12 +1,12 @@
 create table esamestudente
 (
 id int identity primary key,
-idStudente int,
-idEsame int,
+id_studente int,
+id_esame int,
 esito int
 );
 
-INSERT INTO esamestudente (idStudente,idEsame,esito)
+INSERT INTO esamestudente (id_studente,id_esame,esito)
 VALUES
 (1,1,25),
 (1,2,27),

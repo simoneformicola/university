@@ -17,10 +17,10 @@ public class ExamStudent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "idStudente")
+    @Column(name = "id_studente")
     private Integer idStudente;
 
-    @Column(name = "idEsame")
+    @Column(name = "id_esame")
     private Integer idEsame;
 
     @Column(name = "esito")

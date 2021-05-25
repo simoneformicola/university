@@ -14,7 +14,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/examStudent")
+@RequestMapping("/examstudent")
 public class ExamStudentController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class ExamStudentController {
         return this.examStudentService.findAll();
     }
 
-    @GetMapping("/idstudente/{id}")
+    @GetMapping("/idstudente/{idStudente}")
     public ExamStudentDTO getByIdStudente(@PathVariable Integer idStudente) throws ServiceException {
         return this.examStudentService.findByIdStudente(idStudente);
     }
