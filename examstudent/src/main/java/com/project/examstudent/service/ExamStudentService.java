@@ -8,5 +8,5 @@ import java.util.List;
 public interface ExamStudentService {
 
     List<ExamStudentDTO> findAll() throws ServiceException;
-    ExamStudentDTO findByIdStudente(Integer idStudente) throws ServiceException;
+    List<ExamStudentDTO> findByIdStudente(Integer idStudente) throws ServiceException;
 }

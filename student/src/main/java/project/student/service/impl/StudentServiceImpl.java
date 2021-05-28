@@ -118,4 +118,22 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    @Override
+    public Integer getIdStudentByEmail(String email) throws ServiceException {
+        try {
+            Optional<Student> optStudent = studentRepository.findByEmail(email);
+            if (optStudent.isPresent()){
+                StudentDTO studentDTO = studentMapper.toDto(optStudent.get());
+                Integer idStudente = studentDTO.getId();
+                return idStudente;
+            }else {
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new ServiceException(e.getMessage());
+
+        }
+    }
+
 }

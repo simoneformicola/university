@@ -38,11 +38,11 @@ public class ExamStudentServiceImpl implements ExamStudentService {
     }
 
     @Override
-    public ExamStudentDTO findByIdStudente(Integer idStudente) throws ServiceException {
+    public List<ExamStudentDTO> findByIdStudente(Integer idStudente) throws ServiceException {
         try {
-            ExamStudent examStudent = examStudentRepository.findByIdStudente(idStudente);
-            ExamStudentDTO examStudentDTO = examStudentMapper.toDto(examStudent);
-            return examStudentDTO;
+            List<ExamStudent> examStudents = examStudentRepository.findByIdStudente(idStudente);
+            List<ExamStudentDTO> examStudentDTOas = examStudents.stream().map(examStudentMapper::toDto).collect(Collectors.toList());
+            return examStudentDTOas;
         }catch (ServiceException e){
             e.getStackTrace();
             throw new ServiceException(e.getMessage());

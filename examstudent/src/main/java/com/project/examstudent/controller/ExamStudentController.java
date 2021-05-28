@@ -26,7 +26,11 @@ public class ExamStudentController {
     }
 
     @GetMapping("/idstudente/{idStudente}")
-    public ExamStudentDTO getByIdStudente(@PathVariable Integer idStudente) throws ServiceException {
+    public List<ExamStudentDTO> getByIdStudente(@PathVariable Integer idStudente) throws ServiceException {
         return this.examStudentService.findByIdStudente(idStudente);
     }
+
+
 }
+
+

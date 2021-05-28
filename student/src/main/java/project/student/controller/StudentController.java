@@ -48,4 +48,9 @@ public class StudentController {
         return this.studentService.findByLastName(lastName);
     }
 
+    @GetMapping("/idstudente/{email}")
+    public Integer getIdsStudentByEmail(@PathVariable String email) throws ServiceException{
+        return this.studentService.getIdStudentByEmail(email);
+    }
+
 }
