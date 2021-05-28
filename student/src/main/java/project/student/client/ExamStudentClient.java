@@ -7,10 +7,10 @@ import project.student.service.dto.ExamStudentDTO;
 
 import java.util.List;
 
-@FeignClient(name = "examstudent" , url = "${feign.examstudent.url}")
+@FeignClient(name = "examstudent" , url = "${feign.examstudent.url}") // http://localhost:7080
 public interface ExamStudentClient {
 
-    @GetMapping("/examstudent")
+    @GetMapping("/examstudent/idstudente/{idStudente}")
     List<ExamStudentDTO> getExamStudentByIdStudent(@RequestParam Integer idStudente);
 
 }
