@@ -39,4 +39,14 @@ public class ExamController {
         examService.deleteExam(exam);
     }
 
+    @GetMapping("examname/{id}")
+    public String getExamNameById(@PathVariable Integer id) throws ServiceException {
+        return this.examService.findNameExamById(id);
+    }
+
+    @GetMapping("credit/{id}")
+    public Integer getCreditById(@PathVariable Integer id) throws ServiceException {
+        return this.examService.getCreditById(id);
+    }
+
 }

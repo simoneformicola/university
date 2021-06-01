@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "exam",url ="${feign.exam.url}",primary = false)
+@FeignClient(name = "exam", url ="${feign.exam.url}") // http://localhost:8081
 public interface ExamClient {
 
-    @GetMapping("/exam")
-    List<ExamDTO> getExamByIdStudente(@RequestParam Integer idStudente);
+    @GetMapping("/exam/{id}")
+    ExamDTO getExamByIdEsame(@RequestParam Integer idEsame);
 }

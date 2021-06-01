@@ -87,4 +87,28 @@ public class ExamServiceImpl implements ExamService {
         }
     }
 
+    @Override
+    public String findNameExamById(Integer id) throws ServiceException {
+        try{
+            Exam exam = examRepository.getNameExamById(id);
+            String examName = exam.getName();
+            return examName;
+        }catch(Exception e){
+            e.printStackTrace();
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Integer getCreditById(Integer id) throws ServiceException {
+        try{
+            Exam exam = examRepository.getCreditById(id);
+            Integer credit = exam.getCredit();
+            return credit;
+        }catch(Exception e){
+            e.printStackTrace();
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
 }

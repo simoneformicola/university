@@ -13,4 +13,7 @@ public interface ExamService {
     List<ExamDTO> findAll() throws ServiceException;
     ExamDTO save(ExamDTO examDTO) throws ServiceException;
     void deleteExam(Exam exam) throws ServiceException;
+    String findNameExamById(Integer id) throws ServiceException;
+    Integer getCreditById(Integer id) throws ServiceException;
+
 }

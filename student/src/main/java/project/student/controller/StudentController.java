@@ -5,6 +5,7 @@ import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
+import project.student.service.dto.ExamDTO;
 import project.student.service.dto.StudentDTO;
 import project.student.service.StudentService;
 
@@ -48,9 +49,8 @@ public class StudentController {
         return this.studentService.findByLastName(lastName);
     }
 
-    @GetMapping("/idstudente/{email}")
-    public Integer getIdsStudentByEmail(@PathVariable String email) throws ServiceException{
-        return this.studentService.getIdStudentByEmail(email);
-    }
+    
 
+    
+    
 }
