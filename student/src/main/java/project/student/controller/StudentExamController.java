@@ -33,5 +33,14 @@ public class StudentExamController {
         return examDTOS;
 
     }
+
+    //@GetMapping("/allexams/{email}")
+    /*public List<ExamDTO> getAllExamsByEmail(@PathVariable String email) throws ServiceException {
+
+        List<ExamDTO> examDTOS = this.examStudentService.getAllExamsByEmail(email);
+
+        return examDTOS;
+
+    }*/
     
 }

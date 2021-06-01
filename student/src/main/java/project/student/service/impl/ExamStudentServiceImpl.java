@@ -54,4 +54,25 @@ public class ExamStudentServiceImpl implements ExamStudentService {
 
         return examDTOS;
     }
+
+    /*@Override
+    public List<ExamDTO> getAllExamsByEmail(String email) {
+
+        Optional<Student> student = studentRepository.findByEmail(email);
+        Integer idStudente = student.get().getId();
+        List<ExamStudentDTO> examStudentDTO = examStudentClient.getExamStudentByIdStudent(idStudente);
+
+        List<ExamDTO> examDTOS = examClient.getAllExams();
+
+        List<ExamDTO> ExamDtoResult = new ArrayList<>();
+
+        for(int i = 0 ; i<examDTOS.size() ; i++){
+            if(examDTOS.get(i).getId() == examStudentDTO.get(i).getId()){
+                ExamDtoResult.add(examDTOS.get(i));
+            }
+        }
+
+        return ExamDtoResult;
+
+    }*/
 }
