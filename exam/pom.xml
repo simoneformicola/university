@@ -21,6 +21,7 @@
         <flywayplugin.user>sa</flywayplugin.user>
         <flywayplugin.password></flywayplugin.password>
         <common-lib.version>0.0.1-SNAPSHOT</common-lib.version>
+        <spring-boot-starter-cache.version>2.4.0</spring-boot-starter-cache.version>
     </properties>
     <dependencies>
         <dependency>
@@ -70,7 +71,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
-            <version>2.4.0</version>
+            <version>${spring-boot-starter-cache.version}</version>
         </dependency>
         <dependency>
             <groupId>com.project</groupId>

@@ -1,7 +1,7 @@
 package com.project.examstudent.controller;
 
 import com.project.examstudent.service.ExamStudentService;
-import com.project.examstudent.service.dto.ExamStudentDTO;
+import com.project.commonlib.dto.ExamStudentDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;

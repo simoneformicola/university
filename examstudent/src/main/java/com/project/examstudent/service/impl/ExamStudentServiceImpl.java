@@ -3,7 +3,7 @@ package com.project.examstudent.service.impl;
 import com.project.examstudent.model.ExamStudent;
 import com.project.examstudent.repository.ExamStudentRepository;
 import com.project.examstudent.service.ExamStudentService;
-import com.project.examstudent.service.dto.ExamStudentDTO;
+import com.project.commonlib.dto.ExamStudentDTO;
 import com.project.examstudent.service.mapper.ExamStudentMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.service.spi.ServiceException;

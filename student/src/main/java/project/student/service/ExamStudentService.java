@@ -1,6 +1,6 @@
 package project.student.service;
 
-import project.student.service.dto.ExamStudentDTO;
+import com.project.commonlib.dto.ExamStudentDTO;
 
 import java.util.List;
 

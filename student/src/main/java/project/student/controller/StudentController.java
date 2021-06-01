@@ -1,12 +1,10 @@
 package project.student.controller;
 
+import com.project.commonlib.dto.StudentDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
-import project.student.service.dto.ExamDTO;
-import project.student.service.dto.StudentDTO;
 import project.student.service.StudentService;
 
 import java.util.List;

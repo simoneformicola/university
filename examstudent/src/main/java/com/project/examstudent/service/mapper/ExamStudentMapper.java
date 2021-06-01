@@ -1,7 +1,7 @@
 package com.project.examstudent.service.mapper;
 
 import com.project.examstudent.model.ExamStudent;
-import com.project.examstudent.service.dto.ExamStudentDTO;
+import com.project.commonlib.dto.ExamStudentDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

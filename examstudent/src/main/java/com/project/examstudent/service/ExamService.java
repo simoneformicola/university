@@ -1,6 +1,6 @@
 package com.project.examstudent.service;
 
-import com.project.examstudent.service.dto.ExamDTO;
+import com.project.commonlib.dto.ExamDTO;
 
 public interface ExamService {
 

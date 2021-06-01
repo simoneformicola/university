@@ -1,8 +1,9 @@
 package project.student.service.mapper;
 
+import com.project.commonlib.dto.StudentDTO;
 import org.mapstruct.*;
 import project.student.model.Student;
-import project.student.service.dto.StudentDTO;
+
 
 @Mapper(componentModel = "spring")
 public interface StudentMapper {

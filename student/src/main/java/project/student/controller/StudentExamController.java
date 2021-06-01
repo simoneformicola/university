@@ -1,5 +1,7 @@
 package project.student.controller;
 
+import com.project.commonlib.dto.ExamDTO;
+import com.project.commonlib.dto.ExamStudentDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import project.student.client.ExamClient;
 import project.student.client.ExamStudentClient;
 import project.student.service.StudentService;
-import project.student.service.dto.ExamDTO;
-import project.student.service.dto.ExamStudentDTO;
-import project.student.service.dto.StudentDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -35,9 +35,9 @@ public class StudentExamController {
         
         Integer idStudente = studentService.getIdStudentByEmail(email);
         List<ExamStudentDTO> examStudentDTO = examStudentClient.getExamStudentByIdStudent(idStudente);
-        List<Integer> idExams = null;
+        List<Integer> idExams = new ArrayList<>();
 
-        List<ExamDTO> examDTOS = null;
+        List<ExamDTO> examDTOS = new ArrayList<>();
 
         for(ExamStudentDTO examStudentDTO1 : examStudentDTO) {
             Integer idEsame = examStudentDTO1.getIdEsame();

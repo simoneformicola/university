@@ -1,20 +1,17 @@
 package project.student.service.impl;
 
+import com.project.commonlib.dto.StudentDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import project.student.model.Student;
-import project.student.service.dto.StudentDTO;
 import project.student.repository.StudentRepository;
 import project.student.service.StudentService;
 import project.student.service.mapper.StudentMapper;
 
-import javax.swing.text.html.Option;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

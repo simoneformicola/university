@@ -1,8 +1,8 @@
 package com.project.examstudent.service.impl;
 
+import com.project.commonlib.dto.ExamDTO;
 import com.project.examstudent.client.ExamClient;
 import com.project.examstudent.service.ExamService;
-import com.project.examstudent.service.dto.ExamDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,9 +1,9 @@
 package project.student.client;
 
+import com.project.commonlib.dto.ExamStudentDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import project.student.service.dto.ExamStudentDTO;
 
 import java.util.List;
 
