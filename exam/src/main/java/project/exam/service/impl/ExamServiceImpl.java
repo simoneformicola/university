@@ -1,5 +1,6 @@
 package project.exam.service.impl;
 
+import com.project.commonlib.dto.ExamDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.cache.annotation.CacheEvict;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 import project.exam.model.Exam;
 import project.exam.repository.ExamRepository;
 import project.exam.service.ExamService;
-import project.exam.service.dto.ExamDTO;
 import project.exam.service.mapper.ExamMapper;
 
 

@@ -1,10 +1,9 @@
 package project.exam.service.mapper;
 
+import com.project.commonlib.dto.ExamDTO;
 import org.mapstruct.Mapper;
 import project.exam.model.Exam;
-import project.exam.service.dto.ExamDTO;
 
-import java.util.Optional;
 
 
 @Mapper(componentModel = "spring")

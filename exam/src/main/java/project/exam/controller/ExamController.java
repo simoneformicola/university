@@ -1,13 +1,12 @@
 package project.exam.controller;
 
+import com.project.commonlib.dto.ExamDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import project.exam.model.Exam;
 import project.exam.service.ExamService;
-import project.exam.service.dto.ExamDTO;
-
 
 import java.util.List;
 

@@ -1,8 +1,9 @@
 package project.exam.service;
 
+import com.project.commonlib.dto.ExamDTO;
 import org.hibernate.service.spi.ServiceException;
 import project.exam.model.Exam;
-import project.exam.service.dto.ExamDTO;
+
 
 
 import java.util.List;

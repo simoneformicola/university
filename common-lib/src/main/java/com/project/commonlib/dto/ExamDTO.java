@@ -1,4 +1,4 @@
-package project.exam.service.dto;
+package com.project.commonlib.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
