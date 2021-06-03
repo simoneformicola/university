@@ -99,7 +99,7 @@ public class ExamStudentServiceImpl implements ExamStudentService {
                 throw new Exception("studente con email: " + email + " non trovato");
             }
         }catch (Exception e){
-            throw new Exception("studente con email: " + email + " non trovato");
+            throw new Exception(e.getMessage());
         }
 
     }
