@@ -49,7 +49,7 @@ public class ExamController {
     }
 
     @GetMapping("idexams")
-    public List<ExamDTO> getCreditById(@RequestParam List<Integer> idExams) throws Exception {
+    public List<ExamDTO> getExamsByIdList(@RequestParam List<Integer> idExams) throws Exception {
         return this.examService.getByIdList(idExams);
     }
 

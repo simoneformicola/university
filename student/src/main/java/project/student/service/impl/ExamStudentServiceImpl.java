@@ -74,7 +74,7 @@ public class ExamStudentServiceImpl implements ExamStudentService {
                 idExams.add(eStudentDTO.getIdEsame());
             }
 
-            List<ExamDTO> result = examClient.getExamsById(idExams);
+            List<ExamDTO> result = examClient.getExamsByIdList(idExams);
 
             return result;
         }catch (Exception e){

@@ -5,6 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public interface ExamClient {
     @GetMapping("/exam}")
     List<ExamDTO> getAllExams();
 
-    @GetMapping("exam/idexams")
-    List<ExamDTO> getExamsById(List<Integer> ids);
+    @GetMapping("/exam/idexams")
+    List<ExamDTO> getExamsByIdList(@RequestParam List<Integer> idExams);
+
 }
