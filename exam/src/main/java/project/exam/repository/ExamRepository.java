@@ -2,6 +2,7 @@ package project.exam.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import project.exam.model.Exam;
 
@@ -15,8 +16,9 @@ public interface ExamRepository extends JpaRepository<Exam,Integer> {
     Exam getCreditById(Integer id);
 
 
-    @Query( nativeQuery = true, value = "SELECT * FROM studente as s WHERE s.id IN(:ids)")
-    List<Exam> getAllExamsById(List<Integer> ids);
+    //nativeQuery = true, value = ""
+    @Query( nativeQuery = true , value = "SELECT * FROM esame as e WHERE e.id IN (:ids)")
+    List<Exam> getAllExamsById(@Param("ids") List<Integer> ids);
 
 
 }
