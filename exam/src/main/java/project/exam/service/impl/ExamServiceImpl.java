@@ -116,7 +116,7 @@ public class ExamServiceImpl implements ExamService {
     public List<ExamDTO> getByIdList(List<Integer> ids) throws Exception {
         try{
             List<ExamDTO> examDTOS = new ArrayList<>();
-            List<Exam> examList = examRepository.getAllExamsByIds(ids);
+            List<Exam> examList = examRepository.getAllExamsById(ids);
             for(Exam e : examList){
                 ExamDTO examDTO = examMapper.toDTO(e);
                 examDTOS.add(examDTO);

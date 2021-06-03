@@ -71,10 +71,10 @@ public class ExamStudentServiceImpl implements ExamStudentService {
             List<Integer> idExams = new ArrayList<>();
 
             for(ExamStudentDTO eStudentDTO : examStudentDTO){
-                idExams.get(eStudentDTO.getIdEsame());
+                idExams.add(eStudentDTO.getIdEsame());
             }
 
-            List<ExamDTO> result = examClient.getExamsByIds(idExams);
+            List<ExamDTO> result = examClient.getExamsById(idExams);
 
             return result;
         }catch (Exception e){

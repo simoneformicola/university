@@ -17,5 +17,5 @@ public interface ExamClient {
     List<ExamDTO> getAllExams();
 
     @GetMapping("exam/idexams")
-    List<ExamDTO> getExamsByIds(List<Integer> ids);
+    List<ExamDTO> getExamsById(List<Integer> ids);
 }
