@@ -18,32 +18,32 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping
-    public List<StudentDTO> getAll() throws ServiceException {
+    public List<StudentDTO> getAll() throws Exception {
         return this.studentService.findAll();
     }
 
     @GetMapping("/id/{id}")
-    public StudentDTO getById(@PathVariable Integer id) throws ServiceException {
+    public StudentDTO getById(@PathVariable Integer id) throws Exception {
         return this.studentService.findById(id);
     }
 
     @PostMapping
-    public StudentDTO save(@RequestBody StudentDTO student) throws ServiceException {
+    public StudentDTO save(@RequestBody StudentDTO student) throws Exception {
         return this.studentService.save(student);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Integer id) throws ServiceException{
+    public void deleteById(@PathVariable Integer id) throws Exception{
         this.studentService.deleteById(id);
     }
 
     @GetMapping("/firstname/{firstName}")
-    public List<StudentDTO> getByFirstName(@PathVariable String firstName) throws ServiceException{
+    public List<StudentDTO> getByFirstName(@PathVariable String firstName) throws Exception{
         return this.studentService.findByFirstName(firstName);
     }
 
     @GetMapping("/lastname/{lastName}")
-    public List<StudentDTO> getByLastName(@PathVariable String lastName) throws ServiceException{
+    public List<StudentDTO> getByLastName(@PathVariable String lastName) throws Exception{
         return this.studentService.findByLastName(lastName);
     }
 

@@ -21,12 +21,12 @@ public class ExamStudentController {
     private ExamStudentService examStudentService;
 
     @GetMapping
-    public List<ExamStudentDTO> getAll() throws ServiceException {
+    public List<ExamStudentDTO> getAll() throws Exception {
         return this.examStudentService.findAll();
     }
 
     @GetMapping("/idstudente/{idStudente}")
-    public List<ExamStudentDTO> getByIdStudente(@PathVariable Integer idStudente) throws ServiceException {
+    public List<ExamStudentDTO> getByIdStudente(@PathVariable Integer idStudente)  throws Exception {
         return this.examStudentService.findByIdStudente(idStudente);
     }
 

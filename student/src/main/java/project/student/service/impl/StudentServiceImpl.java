@@ -32,17 +32,17 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Cacheable(value = "students" , key = "'all'" )
-    public List<StudentDTO> findAll() throws ServiceException {
+    public List<StudentDTO> findAll() throws Exception {
         try {
             Thread.sleep(3000);
             return studentRepository.findAll().stream().map(studentMapper::toDto).collect(Collectors.toList());
         }catch (Exception e){
-            throw new ServiceException("error FindAllStudents");
+            throw new Exception(e.getMessage());
         }
     }
 
     @Override
-    public StudentDTO findById(Integer id) throws ServiceException {
+    public StudentDTO findById(Integer id) throws Exception {
         try {
             Optional<Student> optStudent = studentRepository.findById(id);
             if (optStudent.isPresent()){
@@ -52,7 +52,7 @@ public class StudentServiceImpl implements StudentService {
                 return null;
             }
         }catch (Exception e){
-            throw new ServiceException("error FindById");
+            throw new Exception(e.getMessage());
         }
     }
 
@@ -62,7 +62,7 @@ public class StudentServiceImpl implements StudentService {
             @CacheEvict(value = "students", key = "#student.firstName"),
             @CacheEvict(value = "students", key = "#student.lastName")
     })
-    public StudentDTO save(StudentDTO student) throws ServiceException {
+    public StudentDTO save(StudentDTO student) throws Exception {
         try {
             Student toBeSaved = studentMapper.toEntity(student);
             Student savedEntity = studentRepository.save(toBeSaved);
@@ -70,7 +70,7 @@ public class StudentServiceImpl implements StudentService {
             return studentDTO;
         }catch (Exception e){
             e.printStackTrace();
-            throw new ServiceException(e.getMessage());
+            throw new Exception(e.getMessage());
         }
     }
 
@@ -87,7 +87,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Cacheable(value = "students" , key = "#firstName")
-    public List<StudentDTO> findByFirstName(String firstName) throws ServiceException {
+    public List<StudentDTO> findByFirstName(String firstName) throws Exception {
         try {
             Thread.sleep(3000);
             List<Student> entityList = studentRepository.findByFirstName(firstName);
@@ -95,14 +95,14 @@ public class StudentServiceImpl implements StudentService {
             return studentDTOS;
         }catch (Exception e){
             e.printStackTrace();
-            throw new ServiceException(e.getMessage());
+            throw new Exception(e.getMessage());
 
         }
     }
 
     @Override
     @Cacheable(value = "students" , key = "#lastName")
-    public List<StudentDTO> findByLastName(String lastName) throws ServiceException {
+    public List<StudentDTO> findByLastName(String lastName) throws Exception {
         try {
             Thread.sleep(3000);
             List<Student> entityList = studentRepository.findByLastName(lastName);
@@ -110,13 +110,13 @@ public class StudentServiceImpl implements StudentService {
             return studentDTOS;
         }catch (Exception e){
             e.printStackTrace();
-            throw new ServiceException(e.getMessage());
+            throw new Exception(e.getMessage());
 
         }
     }
 
     @Override
-    public Integer getIdStudentByEmail(String email) throws ServiceException {
+    public Integer getIdStudentByEmail(String email) throws Exception {
         try {
             Optional<Student> optStudent = studentRepository.findByEmail(email);
             if (optStudent.isPresent()){
@@ -128,7 +128,7 @@ public class StudentServiceImpl implements StudentService {
             }
         }catch (Exception e){
             e.printStackTrace();
-            throw new ServiceException(e.getMessage());
+            throw new Exception(e.getMessage());
 
         }
     }

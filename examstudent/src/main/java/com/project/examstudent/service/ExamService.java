@@ -4,5 +4,5 @@ import com.project.commonlib.dto.ExamDTO;
 
 public interface ExamService {
 
-    ExamDTO getExamById(Integer idEsame);
+    ExamDTO getExamById(Integer idEsame) throws Exception;
 }

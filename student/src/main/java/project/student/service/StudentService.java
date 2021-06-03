@@ -9,11 +9,11 @@ import java.util.List;
 public interface StudentService {
 
 
-    List<StudentDTO> findAll() throws ServiceException;
-    StudentDTO findById(Integer id) throws ServiceException;
-    StudentDTO save(StudentDTO student) throws ServiceException;
-    void deleteById(Integer id) throws ServiceException;
-    List<StudentDTO> findByFirstName(String name) throws ServiceException;
-    List<StudentDTO> findByLastName(String name) throws ServiceException;
-    Integer getIdStudentByEmail(String email) throws ServiceException;
+    List<StudentDTO> findAll() throws Exception;
+    StudentDTO findById(Integer id) throws Exception;
+    StudentDTO save(StudentDTO student) throws Exception;
+    void deleteById(Integer id) throws Exception;
+    List<StudentDTO> findByFirstName(String name) throws Exception;
+    List<StudentDTO> findByLastName(String name) throws Exception;
+    Integer getIdStudentByEmail(String email) throws Exception;
 }

@@ -13,9 +13,13 @@ public class ExamServiceImpl implements ExamService {
     private ExamClient examClient;
 
     @Override
-    public ExamDTO getExamById(Integer idEsame) {
-        ExamDTO examDTO = examClient.getExamByIdEsame(idEsame);
-        return examDTO;
+    public ExamDTO getExamById(Integer idEsame) throws Exception{
+        try {
+            ExamDTO examDTO = examClient.getExamByIdEsame(idEsame);
+            return examDTO;
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
 
     }
 }

@@ -26,26 +26,26 @@ public class ExamStudentServiceImpl implements ExamStudentService {
     }
 
     @Override
-    public List<ExamStudentDTO> findAll() throws ServiceException {
+    public List<ExamStudentDTO> findAll() throws Exception {
         try {
             List<ExamStudent> examStudents = examStudentRepository.findAll();
             List<ExamStudentDTO> examStudentDTOS = examStudents.stream().map(examStudentMapper::toDto).collect(Collectors.toList());
             return examStudentDTOS;
         }catch (Exception e){
             e.printStackTrace();
-            throw new ServiceException(e.getMessage());
+            throw new Exception(e.getMessage());
         }
     }
 
     @Override
-    public List<ExamStudentDTO> findByIdStudente(Integer idStudente) throws ServiceException {
+    public List<ExamStudentDTO> findByIdStudente(Integer idStudente) throws Exception {
         try {
             List<ExamStudent> examStudents = examStudentRepository.findByIdStudente(idStudente);
             List<ExamStudentDTO> examStudentDTOas = examStudents.stream().map(examStudentMapper::toDto).collect(Collectors.toList());
             return examStudentDTOas;
-        }catch (ServiceException e){
+        }catch (Exception e){
             e.getStackTrace();
-            throw new ServiceException(e.getMessage());
+            throw new Exception(e.getMessage());
         }
     }
 }

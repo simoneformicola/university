@@ -19,33 +19,38 @@ public class ExamController {
     private ExamService examService;
 
     @GetMapping
-    public List<ExamDTO> getAll() throws ServiceException {
+    public List<ExamDTO> getAll() throws Exception {
         return this.examService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ExamDTO getById(@PathVariable Integer id) throws ServiceException {
+    public ExamDTO getById(@PathVariable Integer id) throws Exception {
         return this.examService.findById(id);
     }
 
     @PostMapping
-    public ExamDTO save(@RequestBody ExamDTO exam) throws ServiceException{
+    public ExamDTO save(@RequestBody ExamDTO exam) throws Exception{
         return this.examService.save(exam);
     }
 
     @DeleteMapping
-    public void deleteExam(@RequestBody Exam exam) throws ServiceException{
+    public void deleteExam(@RequestBody Exam exam) throws Exception{
         examService.deleteExam(exam);
     }
 
     @GetMapping("examname/{id}")
-    public String getExamNameById(@PathVariable Integer id) throws ServiceException {
+    public String getExamNameById(@PathVariable Integer id) throws Exception {
         return this.examService.findNameExamById(id);
     }
 
     @GetMapping("credit/{id}")
-    public Integer getCreditById(@PathVariable Integer id) throws ServiceException {
+    public Integer getCreditById(@PathVariable Integer id) throws Exception {
         return this.examService.getCreditById(id);
+    }
+
+    @GetMapping("idexams")
+    public List<ExamDTO> getCreditById(@RequestParam List<Integer> idExams) throws Exception {
+        return this.examService.getByIdList(idExams);
     }
 
 }

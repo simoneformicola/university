@@ -13,6 +13,7 @@ import project.exam.service.ExamService;
 import project.exam.service.mapper.ExamMapper;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,7 +33,7 @@ public class ExamServiceImpl implements ExamService {
 
     @Override
     @Cacheable(value = "exams" , key = "'all'")
-    public List<ExamDTO> findAll() throws ServiceException {
+    public List<ExamDTO> findAll() throws Exception {
         try {
             Thread.sleep(3000);
             List<Exam> examList = examRepository.findAll();
@@ -40,12 +41,12 @@ public class ExamServiceImpl implements ExamService {
             return examDTOList;
         }catch (Exception e){
             e.printStackTrace();
-            throw new ServiceException(e.getMessage());
+            throw new Exception(e.getMessage());
         }
     }
 
     @Override
-    public ExamDTO findById(Integer id) throws ServiceException {
+    public ExamDTO findById(Integer id) throws Exception {
         try {
             Optional<Exam> exam = examRepository.findById(id);
             if (exam.isPresent()) {
@@ -54,9 +55,9 @@ public class ExamServiceImpl implements ExamService {
             } else {
                 return null;
             }
-        }catch (ServiceException e){
+        }catch (Exception e){
             e.getStackTrace();
-            throw new ServiceException(e.getMessage());
+            throw new Exception(e.getMessage());
         }
 
     }
@@ -65,50 +66,67 @@ public class ExamServiceImpl implements ExamService {
     @Caching(evict = {
             @CacheEvict(value = "exams" , key = "'all'"),
     })
-    public ExamDTO save(ExamDTO exam) {
+    public ExamDTO save(ExamDTO exam) throws Exception {
         try{
             Exam toBeSaved = examMapper.toEntity(exam);
             Exam savedEntity = examRepository.save(toBeSaved);
             ExamDTO examDTO = examMapper.toDTO(savedEntity);
             return examDTO;
-        }catch (ServiceException e){
+        }catch (Exception e){
             e.getStackTrace();
-            throw new ServiceException(e.getMessage());
+            throw new Exception(e.getMessage());
         }
     }
 
     @Override
-    public void deleteExam(Exam exam) throws ServiceException {
+    public void deleteExam(Exam exam) throws Exception {
         try{
             examRepository.delete(exam);
         }catch(Exception e){
             e.printStackTrace();
-            throw new ServiceException(e.getMessage());
+            throw new Exception(e.getMessage());
         }
     }
 
     @Override
-    public String findNameExamById(Integer id) throws ServiceException {
+    public String findNameExamById(Integer id) throws Exception {
         try{
             Exam exam = examRepository.getNameExamById(id);
             String examName = exam.getName();
             return examName;
         }catch(Exception e){
             e.printStackTrace();
-            throw new ServiceException(e.getMessage());
+            throw new Exception(e.getMessage());
         }
     }
 
     @Override
-    public Integer getCreditById(Integer id) throws ServiceException {
+    public Integer getCreditById(Integer id) throws Exception {
         try{
             Exam exam = examRepository.getCreditById(id);
             Integer credit = exam.getCredit();
             return credit;
         }catch(Exception e){
             e.printStackTrace();
-            throw new ServiceException(e.getMessage());
+            throw new Exception(e.getMessage());
         }
+    }
+
+    @Override
+    public List<ExamDTO> getByIdList(List<Integer> ids) throws Exception {
+        try{
+            List<ExamDTO> examDTOS = new ArrayList<>();
+            List<Exam> examList = examRepository.getAllExamsByIds(ids);
+            for(Exam e : examList){
+                ExamDTO examDTO = examMapper.toDTO(e);
+                examDTOS.add(examDTO);
+            }
+            return examDTOS;
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
+
     }
 
 }

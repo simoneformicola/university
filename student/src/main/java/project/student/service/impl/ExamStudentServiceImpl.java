@@ -27,15 +27,22 @@ public class ExamStudentServiceImpl implements ExamStudentService {
     private StudentRepository studentRepository;
 
     @Override
-    public List<ExamStudentDTO> getAlllExamStudentByIdStudente(Integer idStudente) {
-        List<ExamStudentDTO> examStudentDTOS =  examStudentClient.getExamStudentByIdStudent(idStudente);
-        return examStudentDTOS;
+    public List<ExamStudentDTO> getAlllExamStudentByIdStudente(Integer idStudente) throws Exception {
+        try {
+            List<ExamStudentDTO> examStudentDTOS = examStudentClient.getExamStudentByIdStudent(idStudente);
+            return examStudentDTOS;
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
-    public List<ExamDTO> getAllExamsByStudentEmail(String email) {
+    public List<ExamDTO> getAllExamsByStudentEmail(String email) throws Exception {
 
         Optional<Student> student = studentRepository.findByEmail(email);
+        if(!student.isPresent()){
+            throw new Exception("studente con email: " + email + " non trovato");
+        }
         Integer idStudente = student.get().getId();
         List<ExamStudentDTO> examStudentDTO = examStudentClient.getExamStudentByIdStudent(idStudente);
         List<Integer> idExams = new ArrayList<>();
@@ -55,24 +62,30 @@ public class ExamStudentServiceImpl implements ExamStudentService {
         return examDTOS;
     }
 
-    /*@Override
-    public List<ExamDTO> getAllExamsByEmail(String email) {
+    @Override
+    public List<ExamDTO> getAllExamsByEmail(String email) throws Exception {
+        try {
+            Optional<Student> student = studentRepository.findByEmail(email);
+            Integer idStudente = student.get().getId();
+            List<ExamStudentDTO> examStudentDTO = examStudentClient.getExamStudentByIdStudent(idStudente);
+            List<Integer> idExams = new ArrayList<>();
 
-        Optional<Student> student = studentRepository.findByEmail(email);
-        Integer idStudente = student.get().getId();
-        List<ExamStudentDTO> examStudentDTO = examStudentClient.getExamStudentByIdStudent(idStudente);
-
-        List<ExamDTO> examDTOS = examClient.getAllExams();
-
-        List<ExamDTO> ExamDtoResult = new ArrayList<>();
-
-        for(int i = 0 ; i<examDTOS.size() ; i++){
-            if(examDTOS.get(i).getId() == examStudentDTO.get(i).getId()){
-                ExamDtoResult.add(examDTOS.get(i));
+            for(ExamStudentDTO eStudentDTO : examStudentDTO){
+                idExams.get(eStudentDTO.getIdEsame());
             }
+
+            List<ExamDTO> result = examClient.getExamsByIds(idExams);
+
+            return result;
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
         }
 
-        return ExamDtoResult;
 
-    }*/
+
+
+
+
+
+    }
 }
