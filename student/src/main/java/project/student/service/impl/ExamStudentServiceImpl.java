@@ -66,6 +66,9 @@ public class ExamStudentServiceImpl implements ExamStudentService {
     public List<ExamDTO> getAllExamsByEmail(String email) throws Exception {
         try {
             Optional<Student> student = studentRepository.findByEmail(email);
+            if(!student.isPresent()){
+                throw new Exception("studente con email: " + email + " non trovato");
+            }
             Integer idStudente = student.get().getId();
             List<ExamStudentDTO> examStudentDTO = examStudentClient.getExamStudentByIdStudent(idStudente);
             List<Integer> idExams = new ArrayList<>();
@@ -81,11 +84,23 @@ public class ExamStudentServiceImpl implements ExamStudentService {
             throw new Exception(e.getMessage());
         }
 
+    }
 
-
-
-
-
+    @Override
+    public String deleteStudentExamsByEmail(String email) throws Exception {
+        try {
+            Optional<Student> student = studentRepository.findByEmail(email);
+            if (student.isPresent()) {
+                Integer idStudente = student.get().getId();
+                String deleteExamStudents = examStudentClient.deleteExamsByIdStudente(idStudente);
+                studentRepository.deleteById(idStudente);
+                return deleteExamStudents + " eliminazione studente effettuata";
+            } else {
+                throw new Exception("studente con email: " + email + " non trovato");
+            }
+        }catch (Exception e){
+            throw new Exception("studente con email: " + email + " non trovato");
+        }
 
     }
 }

@@ -5,10 +5,7 @@ import com.project.commonlib.dto.ExamStudentDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +25,11 @@ public class ExamStudentController {
     @GetMapping("/idstudente/{idStudente}")
     public List<ExamStudentDTO> getByIdStudente(@PathVariable Integer idStudente)  throws Exception {
         return this.examStudentService.findByIdStudente(idStudente);
+    }
+
+    @DeleteMapping("/delete/id/{idStudente}")
+    public String deleteExamsByIdStudente(@PathVariable Integer idStudente)  throws Exception {
+        return this.examStudentService.deleteAllxamStudentByIdStudent(idStudente);
     }
 
 

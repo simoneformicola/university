@@ -9,4 +9,5 @@ public interface ExamStudentService {
 
     List<ExamStudentDTO> findAll() throws Exception;
     List<ExamStudentDTO> findByIdStudente(Integer idStudente) throws Exception;
+    String deleteAllxamStudentByIdStudent(Integer idStudente) throws Exception;
 }

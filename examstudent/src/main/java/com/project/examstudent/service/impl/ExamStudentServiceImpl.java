@@ -48,4 +48,15 @@ public class ExamStudentServiceImpl implements ExamStudentService {
             throw new Exception(e.getMessage());
         }
     }
+
+    @Override
+    public String deleteAllxamStudentByIdStudent(Integer idStudente) throws Exception {
+        try {
+            examStudentRepository.deleteAllExamStudentByIdStudente(idStudente);
+            return "eliminazione Esami Passati per studente con id: " + idStudente + " riuscita";
+        }catch (Exception e){
+            e.getStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
 }

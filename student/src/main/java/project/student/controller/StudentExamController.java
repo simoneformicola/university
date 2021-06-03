@@ -5,10 +5,7 @@ import com.project.commonlib.dto.ExamStudentDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.student.client.ExamClient;
 import project.student.client.ExamStudentClient;
 import project.student.service.ExamStudentService;
@@ -40,6 +37,13 @@ public class StudentExamController {
         List<ExamDTO> examDTOS = this.examStudentService.getAllExamsByEmail(email);
 
         return examDTOS;
+
+    }
+
+    @DeleteMapping("/delete/email/{email}")
+    public String deleteByEmail(@PathVariable String email) throws Exception {
+        String result = this.examStudentService.deleteStudentExamsByEmail(email);
+        return result;
 
     }
     
