@@ -15,4 +15,6 @@ public interface ExamService {
     Integer getCreditById(Integer id) throws Exception;
     List<ExamDTO> getByIdList(List<Integer> ids) throws Exception;
 
+    void saveRequiresNew(ExamDTO examDTO) throws Exception;
+    void saveRequired(ExamDTO examDTO) throws Exception;
 }

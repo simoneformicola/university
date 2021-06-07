@@ -7,6 +7,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import project.exam.model.Exam;
 import project.exam.repository.ExamRepository;
 import project.exam.service.ExamService;
@@ -129,4 +131,33 @@ public class ExamServiceImpl implements ExamService {
 
     }
 
+    // transaction example
+
+    // 2a. utilizzo la stessa transazione creata dentro transaction example
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
+    public void saveRequired(ExamDTO examDTO) throws Exception {
+
+        this.examRepository.save(this.examMapper.toEntity(examDTO));
+
+        if (examDTO.getCode() == 3) {
+            throw new Exception("random error");
+        } else {
+            log.info("saving exam with code {}", examDTO.getCode());
+        }
+    }
+
+    // 2b. utilizzo sempre una nuova transazione e NON quella creata dentro transaction example
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+    public void saveRequiresNew(ExamDTO examDTO) throws Exception {
+
+        this.examRepository.save(this.examMapper.toEntity(examDTO));
+
+        if (examDTO.getCode() == 3) {
+            throw new Exception("random error");
+        } else {
+            log.info("saving exam with code {}", examDTO.getCode());
+        }
+    }
 }
