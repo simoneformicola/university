@@ -16,8 +16,8 @@ import java.util.List;
 @RequestMapping("/test")
 public class TestController {
 
-    private TransactionExample transactionExample;
-    private static List<ExamDTO> examList = Arrays.asList(ExamDTO.builder().code(1).build(), ExamDTO.builder().code(2).build(), ExamDTO.builder().code(3).build(), ExamDTO.builder().code(4).build());
+    private final TransactionExample transactionExample;
+    private static final List<ExamDTO> examList = Arrays.asList(ExamDTO.builder().code(1).build(), ExamDTO.builder().code(2).build(), ExamDTO.builder().code(3).build(), ExamDTO.builder().code(4).build());
 
     public TestController(TransactionExample transactionExample) {
         this.transactionExample = transactionExample;
