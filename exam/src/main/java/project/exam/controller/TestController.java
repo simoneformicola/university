@@ -1,6 +1,8 @@
 package project.exam.controller;
 
 import com.project.commonlib.dto.ExamDTO;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import project.exam.model.Exam;
@@ -21,12 +23,12 @@ public class TestController {
         this.transactionExample = transactionExample;
     }
 
-    @RequestMapping("/required")
+    @PostMapping("/required")
     public void required() throws Exception {
         this.transactionExample.saveExamRequired(examList);
     }
 
-    @RequestMapping("/requires_new")
+    @PostMapping("/requires_new")
     public void requiresNew() throws Exception {
         this.transactionExample.saveExamRequiresNew(examList);
     }
