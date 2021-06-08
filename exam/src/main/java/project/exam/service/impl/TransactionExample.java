@@ -40,7 +40,7 @@ public class TransactionExample {
                 try {
                     this.examService.saveRequiresNew(examDTO);
                 }catch (Exception e) {
-                    log.info("error for save witch code: " + examDTO.getCode());
+                    log.info("error for save witch code {}" , examDTO.getCode());
                 }
             }
 
