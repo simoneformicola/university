@@ -59,4 +59,16 @@ public class ExamStudentServiceImpl implements ExamStudentService {
             throw new Exception(e.getMessage());
         }
     }
+
+    @Override
+    public List<ExamStudentDTO> getByStudentIds(List<Integer> studentIds) throws Exception {
+        try {
+            List<ExamStudent> examStudents = examStudentRepository.getAllExamStudentByListIdStudent(studentIds);
+            List<ExamStudentDTO> result = examStudents.stream().map(examStudentMapper::toDto).collect(Collectors.toList());
+            return result;
+        }catch (Exception e){
+            e.getStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
 }

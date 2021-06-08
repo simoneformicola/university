@@ -10,6 +10,7 @@ import project.student.client.ExamClient;
 import project.student.client.ExamStudentClient;
 import project.student.service.ExamStudentService;
 import project.student.service.StudentService;
+import project.student.service.dto.StudentExamsDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,5 +47,11 @@ public class StudentExamController {
         return result;
 
     }
-    
+
+    @GetMapping("/student/exam")
+    public List<StudentExamsDTO> getAllStudentsExams() throws Exception {
+        List<StudentExamsDTO> result = this.examStudentService.getAllStudentExams();
+        return result;
+
+    }
 }

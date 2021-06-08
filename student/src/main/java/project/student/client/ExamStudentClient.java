@@ -18,5 +18,10 @@ public interface ExamStudentClient {
     @DeleteMapping("/examstudent/delete/id/{idStudente}")
     String deleteExamsByIdStudente(@PathVariable Integer idStudente);
 
+    @GetMapping("/examstudent/all/id")
+    List<ExamStudentDTO> getByIdStudente(@RequestParam List<Integer> studentIds);
+
+
+
 
 }

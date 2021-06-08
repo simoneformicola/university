@@ -7,6 +7,7 @@ import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Slf4j
@@ -30,6 +31,11 @@ public class ExamStudentController {
     @DeleteMapping("/delete/id/{idStudente}")
     public String deleteExamsByIdStudente(@PathVariable Integer idStudente)  throws Exception {
         return this.examStudentService.deleteAllxamStudentByIdStudent(idStudente);
+    }
+
+    @GetMapping("/all/id")
+    public List<ExamStudentDTO> getByIdStudente(@RequestParam List<Integer> studentIds)  throws Exception {
+        return this.examStudentService.getByStudentIds(studentIds);
     }
 
 
