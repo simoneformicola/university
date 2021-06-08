@@ -2,11 +2,15 @@ package project.exam.service.impl;
 
 import com.project.commonlib.dto.ExamDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.flywaydb.core.internal.util.ExceptionUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionInterceptor;
 import project.exam.service.ExamService;
 
+import javax.persistence.RollbackException;
 import java.util.List;
 
 @Service
@@ -31,10 +35,17 @@ public class TransactionExample {
     // 1. creo la transazione
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
     public void saveExamRequiresNew(List<ExamDTO> examList) throws Exception {
-        for (ExamDTO examDTO : examList) {
-            this.examService.saveRequiresNew(examDTO);
-        }
+
+            for (ExamDTO examDTO : examList) {
+                try {
+                    this.examService.saveRequiresNew(examDTO);
+                }catch (Exception e) {
+                    throw new Exception(e.getMessage());
+                }
+            }
+
     }
+
 
     // TODO:
     /*

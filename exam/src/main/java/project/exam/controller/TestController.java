@@ -23,11 +23,13 @@ public class TestController {
         this.transactionExample = transactionExample;
     }
 
+    // non salva a db
     @PostMapping("/required")
     public void required() throws Exception {
         this.transactionExample.saveExamRequired(examList);
     }
 
+    // salva a db
     @PostMapping("/requires_new")
     public void requiresNew() throws Exception {
         this.transactionExample.saveExamRequiresNew(examList);
