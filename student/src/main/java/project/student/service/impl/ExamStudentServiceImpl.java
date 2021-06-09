@@ -118,16 +118,17 @@ public class ExamStudentServiceImpl implements ExamStudentService {
     public List<StudentExamsDTO> getAllStudentExams() throws Exception {
         List<StudentExamsDTO> result = new ArrayList<>();
         List<StudentDTO> studentDTOS = new ArrayList<>();
-        List<Integer> listId = new ArrayList<>();
+        List<Integer> listIdStudents = new ArrayList<>();
         List<Integer> idExams = new ArrayList<>();
         List<ExamStudentDTO> examStudentDTOS = new ArrayList<>();
         try {
             List<Student> students = studentRepository.findAll();
             for (Student s : students){
                 studentDTOS.add(studentMapper.toDto(s));
-                listId.add(s.getId());
+                listIdStudents.add(s.getId());
             }
-            examStudentDTOS = examStudentClient.getByIdStudente(listId);
+            examStudentDTOS = examStudentClient.getByIdStudente(listIdStudents);
+
             for (ExamStudentDTO e : examStudentDTOS ){
                 idExams.add(e.getIdEsame());
             }
@@ -144,6 +145,5 @@ public class ExamStudentServiceImpl implements ExamStudentService {
         }
 
     }
-
 
 }
