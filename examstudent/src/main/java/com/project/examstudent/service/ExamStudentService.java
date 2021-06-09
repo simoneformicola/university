@@ -11,4 +11,6 @@ public interface ExamStudentService {
     List<ExamStudentDTO> findByIdStudente(Integer idStudente) throws Exception;
     String deleteAllxamStudentByIdStudent(Integer idStudente) throws Exception;
     List<ExamStudentDTO> getByStudentIds(List<Integer> studentIds) throws Exception;
+    List<ExamStudentDTO> getEvenExamStudent() throws Exception;
+    List<ExamStudentDTO> getOddExamStudent() throws Exception;
 }

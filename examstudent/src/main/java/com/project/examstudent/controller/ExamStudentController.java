@@ -38,6 +38,17 @@ public class ExamStudentController {
         return this.examStudentService.getByStudentIds(studentIds);
     }
 
+    // risultati esami numero pari tramite filter
+    @GetMapping("/even")
+    public List<ExamStudentDTO> getEvenResult()  throws Exception {
+        return this.examStudentService.getEvenExamStudent();
+    }
+
+    // risultati esami numero dispari tramite filter
+    @GetMapping("/odd")
+    public List<ExamStudentDTO> getOddResult()  throws Exception {
+        return this.examStudentService.getOddExamStudent();
+    }
 
 }
 

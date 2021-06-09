@@ -20,6 +20,5 @@ public class ExamServiceImpl implements ExamService {
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
-
     }
 }

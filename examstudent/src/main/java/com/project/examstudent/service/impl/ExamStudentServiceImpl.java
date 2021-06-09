@@ -71,4 +71,26 @@ public class ExamStudentServiceImpl implements ExamStudentService {
             throw new Exception(e.getMessage());
         }
     }
+
+    @Override
+    public List<ExamStudentDTO> getEvenExamStudent() throws Exception {
+        try {
+            List<ExamStudent> examStudents = examStudentRepository.findAll();
+            List<ExamStudentDTO> result = examStudents.stream().filter(examStudent -> examStudent.getResult() % 2 == 0).map(examStudentMapper::toDto).collect(Collectors.toList());
+            return result;
+        }catch (Exception e){
+            throw new Exception("non è stato possibile ottenere risultati pari");
+        }
+    }
+
+    @Override
+    public List<ExamStudentDTO> getOddExamStudent() throws Exception {
+        try {
+            List<ExamStudent> examStudents = examStudentRepository.findAll();
+            List<ExamStudentDTO> result = examStudents.stream().filter(examStudent -> examStudent.getResult() % 2 != 0).map(examStudentMapper::toDto).collect(Collectors.toList());
+            return result;
+        }catch (Exception e){
+            throw new Exception("non è stato possibile ottenere risultati dispari");
+        }
+    }
 }

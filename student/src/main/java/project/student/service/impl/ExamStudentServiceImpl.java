@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ExamStudentServiceImpl implements ExamStudentService {
@@ -82,11 +83,13 @@ public class ExamStudentServiceImpl implements ExamStudentService {
             }
             Integer idStudente = student.get().getId();
             List<ExamStudentDTO> examStudentDTO = examStudentClient.getExamStudentByIdStudent(idStudente);
-            List<Integer> idExams = new ArrayList<>();
+            //List<Integer> idExams = examStudentDTO.stream().collect(examStudentDTO.)
 
+            List<Integer> idExams = new ArrayList<>();
             for(ExamStudentDTO eStudentDTO : examStudentDTO){
                 idExams.add(eStudentDTO.getIdEsame());
             }
+
 
             List<ExamDTO> result = examClient.getExamsByIdList(idExams);
 
