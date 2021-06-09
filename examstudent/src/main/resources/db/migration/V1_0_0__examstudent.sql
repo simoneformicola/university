@@ -10,4 +10,5 @@ INSERT INTO esamestudente (id_studente,id_esame,esito)
 VALUES
 (1,1,25),
 (1,2,27),
-(2,1,19);
+(2,1,19),
+(3,1,19);
