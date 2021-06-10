@@ -20,6 +20,7 @@ public interface ExamStudentRepository extends JpaRepository<ExamStudent,Integer
     void deleteAllExamStudentByIdStudente(@Param("idStudente") Integer idStudente);
 
     @Modifying
-    @Query( nativeQuery = true , value = "SELECT * FROM esamestudente as e WHERE e.id_studente IN (:studentIds)")
-    List<ExamStudent> getAllExamStudentByListIdStudent(@Param("studentIds") List<Integer> studentIds);
+    //@Query( nativeQuery = true , value = "SELECT * FROM esamestudente as e WHERE e.id_studente IN (:studentIds)")
+
+    List<ExamStudent> getByidStudenteIn(List<Integer> studentIds);
 }

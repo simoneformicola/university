@@ -15,7 +15,7 @@ public interface ExamClient {
     @GetMapping("/exam/{id}")
     ExamDTO getById(@PathVariable Integer id);
 
-    @GetMapping("/exam}")
+    @GetMapping("/exam")
     List<ExamDTO> getAllExams();
 
     @GetMapping("/exam/idexams")

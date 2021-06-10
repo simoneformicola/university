@@ -63,7 +63,7 @@ public class ExamStudentServiceImpl implements ExamStudentService {
     @Override
     public List<ExamStudentDTO> getByStudentIds(List<Integer> studentIds) throws Exception {
         try {
-            List<ExamStudent> examStudents = examStudentRepository.getAllExamStudentByListIdStudent(studentIds);
+            List<ExamStudent> examStudents = examStudentRepository.getByidStudenteIn(studentIds);
             List<ExamStudentDTO> result = examStudents.stream().map(examStudentMapper::toDto).collect(Collectors.toList());
             return result;
         }catch (Exception e){

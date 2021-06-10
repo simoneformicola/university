@@ -15,9 +15,8 @@ public interface ExamRepository extends JpaRepository<Exam,Integer> {
     Exam getNameExamById(Integer id);
     Exam getCreditById(Integer id);
 
-
-    @Query( nativeQuery = true , value = "SELECT * FROM esame as e WHERE e.id IN (:ids)")
-    List<Exam> getAllExamsById(@Param("ids") List<Integer> ids);
+    //@Query( nativeQuery = true , value = "SELECT * FROM esame as e WHERE e.id IN (:ids)")
+    List<Exam> getByIdIn(List<Integer> ids);
 
 
 }

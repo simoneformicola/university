@@ -138,39 +138,24 @@ public class ExamStudentServiceImpl implements ExamStudentService {
                 // 1. recuperare tutti gli examstudent con l'id dello studente = s.id
                 // 2. dalla lista degli examStudent ottenuti da punto 1 estraggo gli id degli esami trovati
                 // 3. dalla lista degli id degli esami vado a prendere il suo corrispondente examDTO
-                List<ExamStudentDTO> currentExamStudent = new ArrayList<>();
+                //currentExamStudent = new ArrayList<>();
 
-
-                currentExamStudent =  examStudentDTOS.stream().filter(e -> e.getIdStudente().equals(s.getId())).collect(Collectors.toList());
                 // .1
-                /*for (ExamStudentDTO e : examStudentDTOS){
-                    if(s.getId() == e.getIdStudente()){
-                        currentExamStudent.add(e);
-                    }
-                }*/
+                List<ExamStudentDTO>  currentExamStudent =  examStudentDTOS.stream().filter(e -> e.getIdStudente().equals(s.getId())).collect(Collectors.toList());
 
 
                 // .2
-                List<Integer> examCurrent = new ArrayList<>();
+                List<Integer> examCurrent = currentExamStudent.stream().map(c -> c.getIdEsame()).collect(Collectors.toList());
 
-                examCurrent = currentExamStudent.stream().map(c -> c.getIdEsame()).collect(Collectors.toList());
-                /*for (ExamStudentDTO e : currentExamStudent ){
-                    examCurrent.add(e.getIdEsame());
-                }*/
+
+                List<ExamDTO> examList = examClient.getAllExams();
 
                 //.3
                 List <ExamDTO> examDtoForStudent = new ArrayList<>();
 
-
-                
-                for(Integer e : examCurrent){
-                    for(ExamDTO d: examDTOS){
-                        if(e == d.getId()){
-                            ExamDTO currentexamDTO = d;
-                            examDtoForStudent.add(currentexamDTO);
-                        }
-                    }
-                }
+                examDtoForStudent = examList.stream()
+                        .filter(exam -> examCurrent.contains(exam.getId()))
+                        .collect(Collectors.toList());
 
                 result.add(StudentExamsDTO.builder()
                         .studentDTO(s)
