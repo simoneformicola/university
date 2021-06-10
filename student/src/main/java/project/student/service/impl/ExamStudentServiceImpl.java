@@ -120,55 +120,64 @@ public class ExamStudentServiceImpl implements ExamStudentService {
             List<StudentDTO> studentDTOS = new ArrayList<>();
             List<Integer> listIdStudents = new ArrayList<>();
             List<Integer> idExams = new ArrayList<>();
-            List<ExamStudentDTO> examStudentDTOS = new ArrayList<>();
             List<Student> students = studentRepository.findAll();
-            ExamDTO currentexamDTO = new ExamDTO();
+            //ExamDTO currentexamDTO = new ExamDTO();
 
             studentDTOS = students.stream().map(student -> studentMapper.toDto(student)).collect(Collectors.toList());
             listIdStudents = students.stream().map(student -> student.getId()).collect(Collectors.toList());
 
-            examStudentDTOS = examStudentClient.getByIdStudente(listIdStudents);
+            List<ExamStudentDTO> examStudentDTOS = examStudentClient.getByIdStudente(listIdStudents);
 
             idExams = examStudentDTOS.stream().map(e -> e.getIdEsame()).collect(Collectors.toList());
 
-            
+
             List<ExamDTO> examDTOS = examClient.getExamsByIdList(idExams);
-            for (StudentDTO s : studentDTOS){
+
+            studentDTOS.forEach(s -> {
+
                 // 1. recuperare tutti gli examstudent con l'id dello studente = s.id
                 // 2. dalla lista degli examStudent ottenuti da punto 1 estraggo gli id degli esami trovati
                 // 3. dalla lista degli id degli esami vado a prendere il suo corrispondente examDTO
                 List<ExamStudentDTO> currentExamStudent = new ArrayList<>();
 
+
+                currentExamStudent =  examStudentDTOS.stream().filter(e -> e.getIdStudente().equals(s.getId())).collect(Collectors.toList());
                 // .1
-                for (ExamStudentDTO e : examStudentDTOS){
+                /*for (ExamStudentDTO e : examStudentDTOS){
                     if(s.getId() == e.getIdStudente()){
                         currentExamStudent.add(e);
                     }
-                }
+                }*/
+
 
                 // .2
                 List<Integer> examCurrent = new ArrayList<>();
-                for (ExamStudentDTO e : currentExamStudent ){
+
+                examCurrent = currentExamStudent.stream().map(c -> c.getIdEsame()).collect(Collectors.toList());
+                /*for (ExamStudentDTO e : currentExamStudent ){
                     examCurrent.add(e.getIdEsame());
-                }
+                }*/
 
                 //.3
-                List <ExamDTO> ExamDtoForStudent = new ArrayList<>();
+                List <ExamDTO> examDtoForStudent = new ArrayList<>();
+
+
+                
                 for(Integer e : examCurrent){
                     for(ExamDTO d: examDTOS){
                         if(e == d.getId()){
-                            currentexamDTO = d;
-                            ExamDtoForStudent.add(currentexamDTO);
+                            ExamDTO currentexamDTO = d;
+                            examDtoForStudent.add(currentexamDTO);
                         }
                     }
                 }
 
                 result.add(StudentExamsDTO.builder()
                         .studentDTO(s)
-                        .examDTOS(ExamDtoForStudent)
+                        .examDTOS(examDtoForStudent)
                         .build());
 
-            }
+            });
             return result;
         }catch (Exception e){
             throw new Exception(e.getMessage());
