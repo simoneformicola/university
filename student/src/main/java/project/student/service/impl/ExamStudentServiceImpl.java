@@ -83,13 +83,8 @@ public class ExamStudentServiceImpl implements ExamStudentService {
             }
             Integer idStudente = student.get().getId();
             List<ExamStudentDTO> examStudentDTO = examStudentClient.getExamStudentByIdStudent(idStudente);
-            //List<Integer> idExams = examStudentDTO.stream().collect(examStudentDTO.)
 
-            List<Integer> idExams = new ArrayList<>();
-            for(ExamStudentDTO eStudentDTO : examStudentDTO){
-                idExams.add(eStudentDTO.getIdEsame());
-            }
-
+            List<Integer> idExams = examStudentDTO.stream().map(ExamStudentDTO::getIdEsame).collect(Collectors.toList());
 
             List<ExamDTO> result = examClient.getExamsByIdList(idExams);
 
@@ -128,15 +123,15 @@ public class ExamStudentServiceImpl implements ExamStudentService {
             List<ExamStudentDTO> examStudentDTOS = new ArrayList<>();
             List<Student> students = studentRepository.findAll();
             ExamDTO currentexamDTO = new ExamDTO();
-            for (Student s : students){
-                studentDTOS.add(studentMapper.toDto(s));
-                listIdStudents.add(s.getId());
-            }
+
+            studentDTOS = students.stream().map(student -> studentMapper.toDto(student)).collect(Collectors.toList());
+            listIdStudents = students.stream().map(student -> student.getId()).collect(Collectors.toList());
+
             examStudentDTOS = examStudentClient.getByIdStudente(listIdStudents);
 
-            for (ExamStudentDTO e : examStudentDTOS ){
-                idExams.add(e.getIdEsame());
-            }
+            idExams = examStudentDTOS.stream().map(e -> e.getIdEsame()).collect(Collectors.toList());
+
+            
             List<ExamDTO> examDTOS = examClient.getExamsByIdList(idExams);
             for (StudentDTO s : studentDTOS){
                 // 1. recuperare tutti gli examstudent con l'id dello studente = s.id
