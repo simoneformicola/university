@@ -127,10 +127,7 @@ public class ExamServiceImpl implements ExamService {
         try{
             List<ExamDTO> examDTOS = new ArrayList<>();
             List<Exam> examList = examRepository.findByIdIn(ids);
-            for(Exam e : examList){
-                ExamDTO examDTO = examMapper.toDTO(e);
-                examDTOS.add(examDTO);
-            }
+            examDTOS = examList.stream().map(examMapper::toDTO).collect(Collectors.toList());
             return examDTOS;
         }catch (Exception e){
             throw new Exception(e.getMessage());
