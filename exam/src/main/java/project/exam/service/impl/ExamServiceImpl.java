@@ -93,9 +93,13 @@ public class ExamServiceImpl implements ExamService {
     @Override
     public String findNameExamById(Integer id) throws Exception {
         try{
-            Exam exam = examRepository.getNameExamById(id);
-            String examName = exam.getName();
-            return examName;
+            Optional<Exam> exam = examRepository.findById(id);
+            if(exam.isPresent()){
+                String examName = exam.get().getName();
+                return examName;
+            }else {
+                return null;
+            }
         }catch(Exception e){
             e.printStackTrace();
             throw new Exception(e.getMessage());
@@ -105,9 +109,13 @@ public class ExamServiceImpl implements ExamService {
     @Override
     public Integer getCreditById(Integer id) throws Exception {
         try{
-            Exam exam = examRepository.getCreditById(id);
-            Integer credit = exam.getCredit();
-            return credit;
+            Optional<Exam> exam = examRepository.findById(id);
+            if (exam.isPresent()){
+                Integer credit = exam.get().getCredit();
+                return credit;
+            }else{
+                return null;
+            }
         }catch(Exception e){
             e.printStackTrace();
             throw new Exception(e.getMessage());
@@ -118,7 +126,7 @@ public class ExamServiceImpl implements ExamService {
     public List<ExamDTO> getByIdList(List<Integer> ids) throws Exception {
         try{
             List<ExamDTO> examDTOS = new ArrayList<>();
-            List<Exam> examList = examRepository.getByIdIn(ids);
+            List<Exam> examList = examRepository.findByIdIn(ids);
             for(Exam e : examList){
                 ExamDTO examDTO = examMapper.toDTO(e);
                 examDTOS.add(examDTO);

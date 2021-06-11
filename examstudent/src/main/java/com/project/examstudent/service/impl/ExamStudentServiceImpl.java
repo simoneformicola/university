@@ -52,7 +52,7 @@ public class ExamStudentServiceImpl implements ExamStudentService {
     @Override
     public String deleteAllxamStudentByIdStudent(Integer idStudente) throws Exception {
         try {
-            examStudentRepository.deleteAllExamStudentByIdStudente(idStudente);
+            examStudentRepository.deleteByIdStudente(idStudente);
             return "eliminazione Esami Passati per studente con id: " + idStudente + " riuscita";
         }catch (Exception e){
             e.getStackTrace();
@@ -63,7 +63,7 @@ public class ExamStudentServiceImpl implements ExamStudentService {
     @Override
     public List<ExamStudentDTO> getByStudentIds(List<Integer> studentIds) throws Exception {
         try {
-            List<ExamStudent> examStudents = examStudentRepository.getByidStudenteIn(studentIds);
+            List<ExamStudent> examStudents = examStudentRepository.findByIdStudenteIn(studentIds);
             List<ExamStudentDTO> result = examStudents.stream().map(examStudentMapper::toDto).collect(Collectors.toList());
             return result;
         }catch (Exception e){

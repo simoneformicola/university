@@ -15,12 +15,11 @@ import java.util.List;
 public interface ExamStudentRepository extends JpaRepository<ExamStudent,Integer> {
     List<ExamStudent> findByIdStudente(Integer id);
 
-    @Modifying
-    @Query( nativeQuery = true , value = "DELETE FROM esamestudente as e WHERE e.id_studente = :idStudente")
-    void deleteAllExamStudentByIdStudente(@Param("idStudente") Integer idStudente);
+    //@Modifying
+    //@Query( nativeQuery = true , value = "DELETE FROM esamestudente as e WHERE e.id_studente = :idStudente")
+    //@Param("idStudente")
+    void deleteByIdStudente( Integer idStudente);
 
-    @Modifying
     //@Query( nativeQuery = true , value = "SELECT * FROM esamestudente as e WHERE e.id_studente IN (:studentIds)")
-
-    List<ExamStudent> getByidStudenteIn(List<Integer> studentIds);
+    List<ExamStudent> findByIdStudenteIn(List<Integer> studentIds);
 }
