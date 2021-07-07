@@ -59,7 +59,7 @@ public class StudentExamController {
     public ExamDTO getOddExamByEmail(@PathVariable String email) throws Exception {
         ExamDTO result = this.examStudentService.getExamByOddCreditByEmail(email);
         return result;
-        
+
     }
 
 }

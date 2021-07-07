@@ -195,10 +195,12 @@ public class ExamStudentServiceImpl implements ExamStudentService {
                 studentExamsDTO.setStudentDTO(studentDTO);
                 studentExamsDTO.setExamDTOS(examDTOS);
 
-                result = studentExamsDTO.getExamDTOS().stream()
+                /*result = studentExamsDTO.getExamDTOS().stream()
                         .filter(ExamDTO -> ExamDTO.getCredit() %2 != 0 )
-                        .findAny().get();
+                        .findAny().get();*/
 
+                result = studentExamsDTO.getExamDTOS().stream().filter(e -> e.getCredit() % 2 != 0).findAny().orElse(null);
+                
             }
             return result;
         }catch (Exception e){
