@@ -54,4 +54,12 @@ public class StudentExamController {
         return result;
 
     }
+
+    @GetMapping("/exam/{email}")
+    public ExamDTO getOddExamByEmail(@PathVariable String email) throws Exception {
+        ExamDTO result = this.examStudentService.getExamByOddCreditByEmail(email);
+        return result;
+        
+    }
+
 }

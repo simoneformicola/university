@@ -12,4 +12,6 @@ public interface ExamStudentService {
     List<ExamDTO> getAllExamsByEmail(String email) throws Exception;
     String deleteStudentExamsByEmail(String email) throws Exception;
     List<StudentExamsDTO> getAllStudentExams() throws Exception;
+    ExamDTO getExamByOddCreditByEmail(String email) throws Exception;
+
 }

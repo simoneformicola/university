@@ -47,8 +47,4 @@ public class StudentController {
         return this.studentService.findByLastName(lastName);
     }
 
-    
-
-    
-    
 }

@@ -18,4 +18,5 @@ public class StudentExamsDTO {
 
     private StudentDTO studentDTO;
     private List<ExamDTO> examDTOS;
+
 }

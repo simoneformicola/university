@@ -170,4 +170,40 @@ public class ExamStudentServiceImpl implements ExamStudentService {
 
     }
 
+    @Override
+    public ExamDTO getExamByOddCreditByEmail(String email) throws Exception {
+        try{
+            ExamDTO result = new ExamDTO();
+            StudentExamsDTO studentExamsDTO = new StudentExamsDTO();
+            // 1. recuperare lo studente tramte email
+            Optional<Student> s = studentRepository.findByEmail(email);
+            if (s.isPresent()){
+                StudentDTO studentDTO = studentMapper.toDto(s.get());
+
+                // 2. recuperare la lista degli esami di quello studente
+                List<ExamStudentDTO> exams = examStudentClient.getExamStudentByIdStudent(studentDTO.getId());
+
+                // 3. ottenere gli id degli esami dalla list aottenuta prima degli esami effettuati dallo studente
+                List<Integer> idExams = exams.stream()
+                        .map(ExamStudentDTO::getIdEsame)
+                        .collect(Collectors.toList());
+
+                // 4. ottenre la lista degli esami tramite la lista degli id ottenuti in precedenza
+                List<ExamDTO> examDTOS = examClient.getExamsByIdList(idExams);
+
+                // 5. costruire l'oggetto con dentro lo studente e la lista degli esami effettuati
+                studentExamsDTO.setStudentDTO(studentDTO);
+                studentExamsDTO.setExamDTOS(examDTOS);
+
+                result = studentExamsDTO.getExamDTOS().stream()
+                        .filter(ExamDTO -> ExamDTO.getCredit() %2 != 0 )
+                        .findAny().get();
+
+            }
+            return result;
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
 }

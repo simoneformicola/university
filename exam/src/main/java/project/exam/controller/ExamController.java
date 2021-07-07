@@ -38,17 +38,17 @@ public class ExamController {
         examService.deleteExam(exam);
     }
 
-    @GetMapping("examname/{id}")
+    @GetMapping("/examname/{id}")
     public String getExamNameById(@PathVariable Integer id) throws Exception {
         return this.examService.findNameExamById(id);
     }
 
-    @GetMapping("credit/{id}")
+    @GetMapping("/credit/{id}")
     public Integer getCreditById(@PathVariable Integer id) throws Exception {
         return this.examService.getCreditById(id);
     }
 
-    @GetMapping("idexams")
+    @GetMapping("/idexams")
     public List<ExamDTO> getExamsByIdList(@RequestParam List<Integer> idExams) throws Exception {
         return this.examService.getByIdList(idExams);
     }
